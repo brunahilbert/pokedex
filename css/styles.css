@@ -1,4 +1,44 @@
+/*
+
+=> Typography
+
+logo-font: Ranchers
+font-family: 'Roboto Mono', monospace;
+
+=> Colors used
+
+Text Color (Gray): #374349;
+Body Color (Blue): #64e5f6;
+
+ */
+
 .page-header__item {
     width: 200px;
 }
 
+body {
+    background-color: white;
+    color: #374349;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+    padding-bottom: 95px;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
