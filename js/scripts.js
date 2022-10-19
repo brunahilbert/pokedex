@@ -10,3 +10,12 @@ let pokemonList = [
     {name: 'Ekans', height: 2, type: 'poison'},
     {name: 'Pikachu', height: 0.4, type: 'eletric'}
 ];
+
+for (let i = 0; i < pokemonList.length; i++) {
+    if (pokemonList[i].height > 1.5) {
+        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow, that’s big!`);
+    }else {
+        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height})`);
+    }
+    document.write('<br>')
+}
