@@ -1,6 +1,17 @@
 
-// ========== IIFE ========================================//
+// ========== forEach ========================================//
+function printArrayDetails(list) {
+    if (list.height > 1.5) {
+        document.write(`${list.name} (height: ${list.height}) - Wow, that’s big!`);
+    } else {
+        document.write(`${list.name} (height: ${list.height})`);
+    }
+    document.write('<br>')
+}
 
+// pokemonList.forEach(printArrayDetails)
+
+// ========== IIFE ========================================//
 let pokemonRepository = (function () {
 
     let pokemonList = [
@@ -17,15 +28,8 @@ let pokemonRepository = (function () {
     ];
 
 
-    function printAll() {
-        pokemonList.forEach(function (list) {
-            if (list.height > 1.5) {
-                document.write(`${list.name} (height: ${list.height}) - Wow, that’s big!`);
-            } else {
-                document.write(`${list.name} (height: ${list.height})`);
-            }
-            document.write('<br>')
-        });
+    function getAll() {
+        return pokemonList;
     }
 
     function add(pokemon) {
@@ -40,12 +44,14 @@ let pokemonRepository = (function () {
     }
 
     return {
-        printAll,
-        add
+        getAll: getAll,
+        add: add
     }
 })();
 
 pokemonRepository.add({ name: 'Sandshrew', height: 0.6, type: 'ground' });
 pokemonRepository.add({ nawme: 'Sandshrew', height: 0.6, type: 'ground' });
 
-pokemonRepository.printAll();
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.getAll().forEach(printArrayDetails);
