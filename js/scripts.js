@@ -1,13 +1,13 @@
 
 // ========== forEach ========================================//
-function printArrayDetails(list) {
-    if (list.height > 1.5) {
-        document.write(`${list.name} (height: ${list.height}) - Wow, that’s big!`);
-    } else {
-        document.write(`${list.name} (height: ${list.height})`);
-    }
-    document.write('<br>')
-}
+// function printArrayDetails(list) {
+//     if (list.height > 1.5) {
+//         document.write(`${list.name} (height: ${list.height}) - Wow, that’s big!`);
+//     } else {
+//         document.write(`${list.name} (height: ${list.height})`);
+//     }
+//     document.write('<br>')
+// }
 
 // pokemonList.forEach(printArrayDetails)
 
@@ -43,9 +43,19 @@ let pokemonRepository = (function () {
         }
     }
 
+    function addListItem(pokemon) {
+        let unorderedList = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText = pokemon.name;
+        button.classList.add('button-class');
+        listItem.appendChild(button);
+        unorderedList.appendChild(listItem);
+    }
     return {
         getAll: getAll,
-        add: add
+        add: add,
+        addListItem: addListItem
     }
 })();
 
@@ -54,4 +64,4 @@ pokemonRepository.add({ nawme: 'Sandshrew', height: 0.6, type: 'ground' });
 
 console.log(pokemonRepository.getAll());
 
-pokemonRepository.getAll().forEach(printArrayDetails);
+pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
