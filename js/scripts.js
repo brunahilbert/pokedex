@@ -36,7 +36,7 @@ let pokemonRepository = (function () {
         let unorderedList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
-        button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+        button.innerText = upperCaseFirst(pokemon.name);
         button.classList.add('button-class');
         listItem.appendChild(button);
         unorderedList.appendChild(listItem);
@@ -89,7 +89,7 @@ let pokemonRepository = (function () {
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
-            console.log(pokemon);
+            showModal(pokemon);
         });
     }
 
@@ -103,6 +103,80 @@ let pokemonRepository = (function () {
         popup.classList.remove('.popup.is-visible');
     }
 
+
+    let modalContainer = document.querySelector('#modal-container');
+
+    function showModal(pokemon) {
+
+        // Clear all existing modal content
+        modalContainer.innerHTML = '';
+
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+
+        // Add modal close button
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        let pokemonTitle = document.createElement('h1');
+        pokemonTitle.innerText = upperCaseFirst(pokemon.name);
+
+        let pokemonHeight = document.createElement('p');
+        pokemonHeight.innerText = 'Height: ' + formatedHeight(pokemon.height);
+
+        let pokemonTypes = document.createElement('p');
+        pokemonTypes.innerText = 'Type: ' + pokemon.types.map(item => upperCaseFirst(item.type.name)).join(', ');
+
+        let pokemonImage = document.createElement("img");
+        pokemonImage.setAttribute("src", pokemon.imageUrl);
+        pokemonImage.setAttribute("class", "pokemonImage");
+        pokemonImage.setAttribute("float", "left");
+        pokemonImage.setAttribute("alt", "Pokemon image");
+
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(pokemonTitle);
+        modal.appendChild(pokemonImage);
+        modal.appendChild(pokemonHeight);
+        modal.appendChild(pokemonTypes)
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+    }
+
+    function hideModal() {
+        modalContainer.classList.remove('is-visible');
+    }
+
+    function upperCaseFirst(word) {
+        let upperCased = word.charAt(0).toUpperCase() + word.slice(1);
+        return upperCased;
+    }
+
+    function formatedHeight(height) {
+        if (height <= 9) {
+            return '0.' + height + ' m';
+        } else if (height >= 10) {
+            return height + '0 cm'
+        }
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();
+        }
+    });
+
+    modalContainer.addEventListener('click', (e) => {
+        let target = e.target;
+        if (target === modalContainer) {
+            hideModal();
+        }
+    });
+
+
+
     return {
         getAll: getAll,
         add: add,
@@ -112,11 +186,6 @@ let pokemonRepository = (function () {
         showDetails: showDetails
     }
 })();
-
-// pokemonRepository.add({ name: 'Sandshrew', height: 0.6, type: 'ground' });
-// pokemonRepository.add({ nawme: 'Sandshrew', height: 0.6, type: 'ground' });
-
-// console.log(pokemonRepository.getAll());
 
 pokemonRepository.loadList().then(function () {
     pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
