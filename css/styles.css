@@ -67,9 +67,26 @@ h3 {
     color: #374349;
     border: 2px solid #374349;
     width: 100%;
-  }
+}
 
-  .button-class:hover{
+.button-class:hover {
     background-color: #E8534F;
     color: white;
-  }
+}
+
+.popup {
+    width: 200px;
+    background: #E8534F;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 30px;
+    display: none;
+}
+
+.popup.is-visible {
+    display: block;
+}
