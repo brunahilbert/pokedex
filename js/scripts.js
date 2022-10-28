@@ -124,7 +124,7 @@ let pokemonRepository = (function () {
         pokemonTitle.innerText = upperCaseFirst(pokemon.name);
 
         let pokemonHeight = document.createElement('p');
-        pokemonHeight.innerText = 'Height: ' + formatedHeight(pokemon.height);
+        pokemonHeight.innerText = 'Height: ' + formattedHeight(pokemon.height);
 
         let pokemonTypes = document.createElement('p');
         pokemonTypes.innerText = 'Type: ' + pokemon.types.map(item => upperCaseFirst(item.type.name)).join(', ');
@@ -154,11 +154,12 @@ let pokemonRepository = (function () {
         return upperCased;
     }
 
-    function formatedHeight(height) {
+    function formattedHeight(height) {
+        const heigthStr = height.toString();
         if (height <= 9) {
-            return '0.' + height + ' m';
-        } else if (height >= 10) {
-            return height + '0 cm'
+            return heigthStr + '0 cm';
+        } else {
+            return heigthStr.charAt(0) + '.' + heigthStr.slice(1) + ' m';
         }
     }
 
