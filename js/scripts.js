@@ -93,17 +93,35 @@ let pokemonRepository = (function () {
         });
     }
 
+    // =========== LOADING MESSAGE ============================================
     function showLoadingMessage() {
-        let popup = document.querySelector('.popup');
-        popup.classList.add('.popup.is-visible');
+        let loadingMessageContainer = document.querySelector('#loading-message');
+
+        // Clear all existing modal content
+        loadingMessageContainer.innerHTML = '';
+
+        let message = document.createElement('div');
+        message.classList.add('message');
+
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = 'Wait!';
+
+        let contentElement = document.createElement('p');
+        contentElement.innerText = 'The data is being loaded';
+
+        message.appendChild(titleElement);
+        message.appendChild(contentElement);
+        loadingMessageContainer.appendChild(message);
+
+        loadingMessageContainer.classList.add('is-visible');
     }
 
     function hideLoadingMessage() {
-        let popup = document.querySelector('.popup');
-        popup.classList.remove('.popup.is-visible');
+        let loadingMessageContainer = document.querySelector('#loading-message');
+        loadingMessageContainer.classList.remove('is-visible');
     }
 
-
+    // ========== POKEMON EXIBITION ==============================================
     let modalContainer = document.querySelector('#modal-container');
 
     function showModal(pokemon) {
