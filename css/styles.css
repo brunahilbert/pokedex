@@ -23,8 +23,12 @@ body {
     min-height: 100vh;
 }
 
-main {
-    margin-top: 100px;
+.pokemon-container {
+    margin-top: 105px;
+}
+
+.form-control {
+    width: 50%;
 }
 
 h1 {
@@ -128,4 +132,20 @@ h3 {
 
 .message p {
     margin-bottom: 0;
+}
+
+@media all and (max-width: 500px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #search-input {
+        width: 80%;
+        margin-bottom: 5px;
+    }
+
+    .pokemon-container {
+        margin-top: 150px;
+    }
 }
