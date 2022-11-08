@@ -11,6 +11,10 @@ Body Color (Blue): #64e5f6;
     width: 200px;
 }
 
+.navbar {
+    padding: 8px 25px;
+}
+
 body {
     background-color: white;
     color: #374349;
