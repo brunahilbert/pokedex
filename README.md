@@ -16,4 +16,4 @@ The project also has a search engine located in the upper right corner, where th
 -   JS
 -   Bootstrap
 
-Link:  [https://brunahilbert.github.io/pokedex/](https://jdussold.github.io/pokedex/)
+Link:  [https://brunahilbert.github.io/pokedex/](https://brunahilbert.github.io/pokedex/)
